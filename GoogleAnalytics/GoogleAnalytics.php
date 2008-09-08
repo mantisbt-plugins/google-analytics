@@ -30,7 +30,7 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 
 	function config() {
 		return array(
-			'uid' => 'UA-XXXX-X',
+			'google_uid' => 'UA-XXXX-X',
 		);
 	}
 
@@ -41,7 +41,7 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 	}
 
 	function footer() {
-		$t_google_uid = string_attribute( plugin_config_get( 'uid' ) );
+		$t_google_uid = string_attribute( plugin_config_get( 'google_uid' ) );
 
 		if ( 'UA-XXXX-X' == $t_google_uid ) {
 			return;

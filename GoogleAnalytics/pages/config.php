@@ -26,8 +26,8 @@ html_page_top2();
 </tr>
 
 <tr <?php echo helper_alternate_class() ?>>
-<td class="category"><?php echo plugin_lang_get( 'uid' ) ?></td>
-<td><input name="google_uid" value="<?php echo string_attribute( plugin_config_get( 'uid' ) ) ?>"/></td>
+<td class="category"><?php echo plugin_lang_get( 'google_uid' ) ?></td>
+<td><input name="google_uid" value="<?php echo string_attribute( plugin_config_get( 'google_uid' ) ) ?>"/></td>
 </tr>
 
 <tr>

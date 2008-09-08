@@ -15,5 +15,5 @@ $s_plugin_GoogleAnalytics_ = '';
 $s_plugin_GoogleAnalytics_title = 'Google Analytics';
 $s_plugin_GoogleAnalytics_description = 'Add Google Analytics to your Mantis site.';
 
-$s_plugin_GoogleAnalytics_uid = 'Google Analytics UID<br/><span class="small">Form of XX-XXXX-X</span>';
+$s_plugin_GoogleAnalytics_google_uid = 'Google Analytics UID<br/><span class="small">Form of XX-XXXX-X</span>';
 

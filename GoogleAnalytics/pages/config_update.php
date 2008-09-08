@@ -13,11 +13,11 @@
 
 access_ensure_global_level( ADMINISTRATOR );
 
-$t_google_uid = plugin_config_get( 'uid' );
-$f_google_uid = gpc_get_string( 'uid', null );
+$t_google_uid = plugin_config_get( 'google_uid' );
+$f_google_uid = gpc_get_string( 'google_uid', null );
 
 if ( $f_google_uid != $t_google_uid ) {
-	plugin_config_set( 'uid', $f_google_uid );
+	plugin_config_set( 'google_uid', $f_google_uid );
 }
 
 print_successful_redirect( plugin_page( 'config', true ) );
