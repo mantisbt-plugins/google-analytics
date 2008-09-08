@@ -30,6 +30,9 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 
 	function config() {
 		return array(
+			'admin_threshold' => ADMINISTRATOR,
+			'track_admins' => true,
+
 			'google_uid' => 'UA-XXXX-X',
 		);
 	}
@@ -41,9 +44,13 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 	}
 
 	function footer() {
+		$t_admin_threshold = plugin_config_get( 'admin_threshold' );
+		$t_track_admins = plugin_config_get( 'track_admins' );
+
 		$t_google_uid = string_attribute( plugin_config_get( 'google_uid' ) );
 
-		if ( 'UA-XXXX-X' == $t_google_uid ) {
+		if ( 'UA-XXXX-X' == $t_google_uid ||
+	   		( !$t_track_admins && access_has_globas_level( $t_admin_threshold ) ) ) {
 			return;
 		}
 
