@@ -18,7 +18,7 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );
 		$this->page = 'config';
 
-		$this->version = "0.1";
+		$this->version = "1.0";
 		$this->requires = array(
 			'MantisCore' => "1.2",
 		);
