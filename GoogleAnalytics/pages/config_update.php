@@ -13,12 +13,13 @@
 
 access_ensure_global_level( ADMINISTRATOR );
 
-$t_google_uid = plugin_config_get( 'google_uid' );
-$f_google_uid = gpc_get_string( 'google_uid', null );
+$f_google_uid = gpc_get_string( 'google_uid', '' );
+$f_admin_threshold = gpc_get_int( 'admin_threshold' );
+$f_track_admins = gpc_get_bool( 'track_admins', false );
 
-if ( $f_google_uid != $t_google_uid ) {
-	plugin_config_set( 'google_uid', $f_google_uid );
-}
+plugin_config_set( 'google_uid', $f_google_uid );
+plugin_config_set( 'admin_threshold', $f_admin_threshold );
+plugin_config_set( 'track_admins', $f_track_admins );
 
 print_successful_redirect( plugin_page( 'config', true ) );
 
