@@ -49,7 +49,7 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 
 		$t_google_uid = string_attribute( plugin_config_get( 'google_uid' ) );
 
-		if ( 'UA-XXXX-X' == $t_google_uid ||
+		if ( ( is_blank( $t_google_uid ) || 'UA-XXXX-X' == $t_google_uid ) ||
 	   		( !$t_track_admins && access_has_globas_level( $t_admin_threshold ) ) ) {
 			return;
 		}
