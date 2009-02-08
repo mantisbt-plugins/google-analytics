@@ -44,6 +44,12 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 	}
 
 	function footer() {
+		# Don't use analytics on login pages
+		$t_file = $_SERVER['SCRIPT_FILENAME'];
+		if ( strpos( basename( $t_file ), 'login' ) ) {
+			return;
+		}
+
 		$t_admin_threshold = plugin_config_get( 'admin_threshold' );
 		$t_track_admins = plugin_config_get( 'track_admins' );
 
