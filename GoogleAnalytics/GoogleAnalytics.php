@@ -18,7 +18,7 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 		$this->description = plugin_lang_get( 'description' );
 		$this->page = 'config';
 
-		$this->version = "1.0";
+		$this->version = "1.1";
 		$this->requires = array(
 			'MantisCore' => "1.2",
 		);
@@ -39,11 +39,11 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 
 	function hooks() {
 		return array(
-			'EVENT_LAYOUT_BODY_END' => 'footer',
+			'EVENT_LAYOUT_RESOURCES' => 'resources',
 		);
 	}
 
-	function footer() {
+	function resources() {
 		# Don't use analytics on login pages
 		$t_file = $_SERVER['SCRIPT_FILENAME'];
 		if ( strpos( basename( $t_file ), 'login' ) ) {
@@ -60,16 +60,19 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 			return;
 		}
 
-		$t_google_js = <<< EOT
+		$t_google_js = <<< HTML
 <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '$t_google_uid']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 </script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("$t_google_uid");
-pageTracker._trackPageview();
-</script>
-EOT;
+HTML;
 
 		return $t_google_js;
 	}
