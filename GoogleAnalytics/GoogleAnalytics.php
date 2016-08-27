@@ -20,7 +20,7 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 
 		$this->version = "1.1";
 		$this->requires = array(
-			'MantisCore' => "1.2",
+			'MantisCore' => '1.3',
 		);
 
 		$this->author = "John Reese";
