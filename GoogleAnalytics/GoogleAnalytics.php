@@ -61,6 +61,7 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 		}
 
 		$t_google_js = <<< HTML
+
 <script type="text/javascript">
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '$t_google_uid']);
