@@ -14,7 +14,7 @@
 auth_reauthenticate( );
 access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 
-layout_page_header( lang_get( 'plugin_format_title' ) );
+layout_page_header( plugin_lang_get( 'title' ) );
 
 layout_page_begin( 'manage_overview_page.php' );
 
@@ -34,7 +34,7 @@ $t_track_admins = plugin_config_get( 'track_admins' );
 <div class="widget-header widget-header-small">
 	<h4 class="widget-title lighter">
 		<i class="ace-icon fa fa-text-width"></i>
-		<?php echo lang_get( 'plugin_format_title' ) . ': ' . lang_get( 'plugin_format_config' )?>
+		<?php echo plugin_lang_get( 'title' ) . ': ' . plugin_lang_get( 'config' )?>
 	</h4>
 </div>
 
