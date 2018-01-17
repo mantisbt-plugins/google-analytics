@@ -22,7 +22,6 @@ print_manage_menu( 'manage_plugin_page.php' );
 
 $t_admin_threshald = plugin_config_get( 'admin_threshold' );
 $t_track_admins = plugin_config_get( 'track_admins' );
-//<br/>
 ?>
 
 <div class="col-md-12 col-xs-12">
