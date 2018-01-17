@@ -11,12 +11,8 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-access_ensure_global_level( ADMINISTRATOR );
-
-//html_page_top1( plugin_lang_get( 'title' ) );
-//html_page_top2();
 auth_reauthenticate( );
-//access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
+access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 
 layout_page_header( lang_get( 'plugin_format_title' ) );
 
@@ -85,6 +81,5 @@ $t_track_admins = plugin_config_get( 'track_admins' );
 </div>
 
 <?php
-//html_page_bottom1( __FILE__ );
 layout_page_end();
 
