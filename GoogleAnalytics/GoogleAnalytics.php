@@ -12,7 +12,10 @@
 # GNU General Public License for more details.
 
 class GoogleAnalyticsPlugin extends MantisPlugin {
-
+	
+	// This code allow script based on CSP 2.0 (nonce)
+	// const noncevalue = 'HCpcYCEnfgaoi987vbldhgUNBL';
+	
 	function register() {
 		$this->name = plugin_lang_get( 'title' );
 		$this->description = plugin_lang_get( 'description' );
@@ -40,9 +43,10 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 	function hooks() {
 		return array(
 			'EVENT_LAYOUT_RESOURCES' => 'resources',
+			'EVENT_CORE_HEADERS' => 'csp_headers'
 		);
 	}
-
+	
 	function resources() {
 		# Don't use analytics on login pages
 		$t_file = $_SERVER['SCRIPT_FILENAME'];
@@ -59,23 +63,45 @@ class GoogleAnalyticsPlugin extends MantisPlugin {
 	   		( !$t_track_admins && access_has_global_level( $t_admin_threshold ) ) ) {
 			return;
 		}
-
+		// This code allow script based on CSP 2.0 (nonce)
+        // $noncevalue = constant('GoogleAnalyticsPlugin::noncevalue');
+		// <script nonce="$noncevalue">
 		$t_google_js = <<< HTML
 
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '$t_google_uid']);
-  _gaq.push(['_trackPageview']);
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+ga('create', '$t_google_uid', 'auto');
+ga('send', 'pageview');
 </script>
+<!-- End Google Analytics -->
+
 HTML;
 
 		return $t_google_js;
+	}
+	
+	function csp_headers() {
+		// This code allow script based on CSP 1.0
+		http_csp_add( 'script-src', "'unsafe-inline'" );  
+		http_csp_add( 'script-src', 'https://www.google-analytics.com' ); 
+		http_csp_add( 'img-src', 'https://www.google-analytics.com' ); 
+		http_csp_add( 'img-src', 'http://stats.g.doubleclick.net' ); 
+		http_csp_add( 'img-src', 'https://www.google.com' ); 
+		http_csp_add( 'img-src', 'https://www.google.com.ua' ); 
+		
+		// This code allow script based on CSP 2.0 (nonce)
+		// $noncevalue = constant('GoogleAnalyticsPlugin::noncevalue');
+		// http_csp_add( 'script-src', "'nonce-$noncevalue'" ); 
+		// http_csp_add( 'script-src', 'https://www.google-analytics.com' ); 
+		// http_csp_add( 'img-src', 'https://www.google-analytics.com' ); 
+		// http_csp_add( 'img-src', 'http://stats.g.doubleclick.net' ); 
+		// http_csp_add( 'img-src', 'https://www.google.com' ); 
+		// http_csp_add( 'img-src', 'https://www.google.com.ua' ); 
 	}
 }
 
