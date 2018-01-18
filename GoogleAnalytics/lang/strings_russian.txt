@@ -1,0 +1,22 @@
+<?php
+# Copyright (C) 2018	Oleksii Kurbatskyi
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+$s_plugin_GoogleAnalytics_ = '';
+$s_plugin_GoogleAnalytics_title = 'Google Analytics';
+$s_plugin_GoogleAnalytics_description = 'Добавление функционала Google Analytics к Вашему сайту Mantis.';
+$s_plugin_GoogleAnalytics_config = 'Настройка';
+
+$s_plugin_GoogleAnalytics_google_uid = 'Google Analytics UID<br/><span class="small">Формат XX-XXXX-X</span>';
+$s_plugin_GoogleAnalytics_admin_threshold = 'Граничный уровень пользователя для сбора аналитики<br/><span class="small">Не собирать аналитику для пользователей с граничным уровнем доступа и выше</span>';
+$s_plugin_GoogleAnalytics_track_admins = 'Собирать аналитику для пользователей всех уровней<br/><span class="small">Включенная опция игнорирует настройки граничного уровня пользователя</span>';
+

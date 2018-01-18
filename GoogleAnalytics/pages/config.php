@@ -11,19 +11,38 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 
-access_ensure_global_level( ADMINISTRATOR );
+auth_reauthenticate( );
+access_ensure_global_level( config_get( 'manage_plugin_threshold' ) );
 
-html_page_top1( plugin_lang_get( 'title' ) );
-html_page_top2();
+layout_page_header( plugin_lang_get( 'title' ) );
+
+layout_page_begin( 'manage_overview_page.php' );
+
+print_manage_menu( 'manage_plugin_page.php' );
 
 $t_admin_threshald = plugin_config_get( 'admin_threshold' );
 $t_track_admins = plugin_config_get( 'track_admins' );
-
 ?>
-<br/>
+
+<div class="col-md-12 col-xs-12">
+<div class="space-10"></div>
+<div class="form-container" >
 
 <form action="<?php echo plugin_page( 'config_update' ) ?>" method="post">
-<table class="width50" align="center" cellspacing="1">
+
+<div class="widget-box widget-color-blue2">
+<div class="widget-header widget-header-small">
+	<h4 class="widget-title lighter">
+		<i class="ace-icon fa fa-text-width"></i>
+		<?php echo plugin_lang_get( 'title' ) . ': ' . plugin_lang_get( 'config' )?>
+	</h4>
+</div>
+
+<div class="widget-body">
+<div class="widget-main no-padding">
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-striped">
+<!-- <table class="width50" align="center" cellspacing="1"> -->
 
 <tr>
 <td class="form-title" colspan="2"><?php echo plugin_lang_get( 'title' ) ?></td>
@@ -48,13 +67,18 @@ $t_track_admins = plugin_config_get( 'track_admins' );
 <td><input name="track_admins" type="checkbox" <?php echo (ON == $t_track_admins ? 'checked="checked"' : '') ?>></td>
 </tr>
 
-<tr>
-<td class="center" colspan="2"><input type="submit"/></td>
-</tr>
-
 </table>
+</div>
+</div>
+<div class="widget-toolbox padding-8 clearfix">
+	<input type="submit" class="btn btn-primary btn-white btn-round" value="<?php echo lang_get( 'change_configuration' )?>" />
+</div>
+</div>
+</div>
 </form>
+</div>
+</div>
 
 <?php
-html_page_bottom1( __FILE__ );
+layout_page_end();
 

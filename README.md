@@ -14,9 +14,7 @@ Use the [GitHub issues tracker](https://github.com/mantisbt-plugins/google-analy
 
 ## Compatibility
 
-- Supports MantisBT v1.2.x -- use master-1.2.x branch
-- Supports MantisBT v1.3.x -- use master branch
-- Supports MantisBT v1.3.x (modern ui) -- use master-modernui branch
+- Supports MantisBT v2.x.x (plugin tested on version 2.10.0)
 
 ## Original author
 John Reese <jreese@leetcode.net>
